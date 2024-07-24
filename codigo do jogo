@@ -1,0 +1,309 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class Game:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Prion-x vs Humanidade")
+        self.root.state('zoomed')  # Define a janela para tela cheia
+        self.root.configure(bg='#f5f5f5')
+
+        self.frame = tk.Frame(self.root, bg='#f5f5f5')
+        self.frame.pack(expand=True, fill='both')
+
+        self.create_intro()
+
+    def create_intro(self):
+        self.clear_frame()
+        intro_label = tk.Label(self.frame, text="Prion-x vs Humanidade: A jornada de Dr. Vitinho", font=("Helvetica", 32, "bold"), bg='#f5f5f5')
+        intro_label.pack(pady=40)
+        start_button = tk.Button(self.frame, text="Iniciar", font=("Helvetica", 20), command=self.chapter1, bg='#0057b8', fg='#ffffff', width=20, height=2)
+        start_button.pack(pady=20)
+
+    def chapter1(self):
+        self.clear_frame()
+        chapter1_label = tk.Label(self.frame, text="Capítulo 1: A descoberta do Príon-X", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        chapter1_label.pack(pady=20)
+        chapter1_text = tk.Label(self.frame, text="Dr. Vitinho descobre o Príon-X, um agente infeccioso perigoso...", wraplength=800, justify="left", bg='#f5f5f5')
+        chapter1_text.pack(pady=20)
+        continue_button = tk.Button(self.frame, text="Continuar", font=("Helvetica", 20), command=self.chapter2, bg='#0057b8', fg='#ffffff', width=20, height=2)
+        continue_button.pack(pady=20)
+
+    def chapter2(self):
+        self.clear_frame()
+        chapter2_label = tk.Label(self.frame, text="Capítulo 2: Decisões críticas", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        chapter2_label.pack(pady=20)
+        chapter2_text = tk.Label(self.frame, text="Você precisa tomar decisões importantes para conter o Príon-X...", wraplength=800, justify="left", bg='#f5f5f5')
+        chapter2_text.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Continuar testes com antiviral", font=("Helvetica", 20), command=self.continue_tests, bg='#0057b8', fg='#ffffff', width=25, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Parar os testes", font=("Helvetica", 20), command=self.stop_tests, bg='#0057b8', fg='#ffffff', width=25, height=2)
+        choice2_button.pack(pady=10)
+
+    def continue_tests(self):
+        self.clear_frame()
+        messagebox.showinfo("Testes Continuados", "Você decidiu continuar os testes do antiviral.")
+        self.chapter3()
+
+    def stop_tests(self):
+        self.clear_frame()
+        messagebox.showwarning("Testes Parados", "Você decidiu parar os testes do antiviral.")
+        self.end_game(False)
+
+    def chapter3(self):
+        self.clear_frame()
+        chapter3_label = tk.Label(self.frame, text="Capítulo 3: Explosão no Laboratório", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        chapter3_label.pack(pady=20)
+        chapter3_text = tk.Label(self.frame, text="Uma explosão ocorre no seu laboratório, liberando o Príon-X no ambiente.", wraplength=800, justify="left", bg='#f5f5f5')
+        chapter3_text.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Evacuar a área e informar autoridades", font=("Helvetica", 20), command=self.evacuate_area, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Tentar conter a disseminação", font=("Helvetica", 20), command=self.contain_spread, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def evacuate_area(self):
+        self.clear_frame()
+        messagebox.showinfo("Evacuação", "Você evacuou a área e informou as autoridades.")
+        self.evacuate_area_next()
+
+    def evacuate_area_next(self):
+        self.clear_frame()
+        evacuate_next_label = tk.Label(self.frame, text="As autoridades estão agora de olho em você. A distribuição da cura será mais difícil.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        evacuate_next_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Mudar-se para Itapevi", font=("Helvetica", 20), command=self.move_to_itapevi, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Ficar e tentar outras opções", font=("Helvetica", 20), command=self.stay_and_struggle, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def move_to_itapevi(self):
+        self.clear_frame()
+        move_itapevi_label = tk.Label(self.frame, text="Você decidiu se mudar para Itapevi, onde há mais habitantes que podem ajudar a distribuir a cura.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        move_itapevi_label.pack(pady=20)
+        self.chapter4_itapevi()
+
+    def stay_and_struggle(self):
+        self.clear_frame()
+        messagebox.showwarning("Fim do Jogo", "Você decidiu não se mudar para Itapevi. A cura não foi distribuída a tempo e a humanidade foi extinta.")
+        self.end_game(False)
+
+    def contain_spread(self):
+        self.clear_frame()
+        messagebox.showinfo("Contenção", "Você tentou conter a disseminação com os recursos que ainda restam.")
+        self.chapter4()
+
+    def chapter4_itapevi(self):
+        self.clear_frame()
+        chapter4_label = tk.Label(self.frame, text="Capítulo 4: A Chegada em Itapevi", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        chapter4_label.pack(pady=20)
+        chapter4_text = tk.Label(self.frame, text="Brian encontra Dr. Vitinho em Itapevi, revelando que ele já sabia sobre o Príon-X e tinha planos de usar a doença para destruir o planeta. Agora, ele vê uma oportunidade.", wraplength=800, justify="left", bg='#f5f5f5')
+        chapter4_text.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Convencer Brian a ajudar", font=("Helvetica", 20), command=self.convince_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Sacrificar Brian", font=("Helvetica", 20), command=self.sacrifice_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def chapter4(self):
+        self.clear_frame()
+        chapter4_label = tk.Label(self.frame, text="Capítulo 4: Sacrifícios Necessários", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        chapter4_label.pack(pady=20)
+        chapter4_text = tk.Label(self.frame, text="Seu amigo de infância, Brian, já sabia do príon-x e quer espalhar a doença pelo mundo, pois já era um plano seu acabar com a humanidade.", wraplength=800, justify="left", bg='#f5f5f5')
+        chapter4_text.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Sacrificar Brian", font=("Helvetica", 20), command=self.sacrifice_brian, bg='#0057b8', fg='#ffffff', width=25, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Convencê-lo a ajudar", font=("Helvetica", 20), command=self.convince_brian, bg='#0057b8', fg='#ffffff', width=25, height=2)
+        choice2_button.pack(pady=10)
+
+    def sacrifice_brian(self):
+        self.clear_frame()
+        messagebox.showinfo("Brian Sacrificado", "Você sacrificou Brian para impedir seus planos.")
+        self.lost_trust()
+
+    def convince_brian(self):
+        self.clear_frame()
+        messagebox.showinfo("Brian Convencido", "Você convenceu Brian a desistir e ajudar na contenção da doença.")
+        self.gain_trust()
+
+    def lost_trust(self):
+        self.clear_frame()
+        lost_trust_label = tk.Label(self.frame, text="Você perdeu a confiança da humanidade pelo sacrifício de Brian.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        lost_trust_label.pack(pady=20)
+        self.continue_story_brian_sacrificed()
+
+    def gain_trust(self):
+        self.clear_frame()
+        gain_trust_label = tk.Label(self.frame, text="Brian ajudou na distribuição da cura, aumentando a confiança em você.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        gain_trust_label.pack(pady=20)
+        self.continue_story_brian_alive()
+
+    def continue_story_brian_sacrificed(self):
+        choice1_button = tk.Button(self.frame, text="Contatar organizações internacionais", font=("Helvetica", 20), command=self.contact_organizations, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Usar drones para dispersão aérea", font=("Helvetica", 20), command=self.use_drones, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def continue_story_brian_alive(self):
+        choice1_button = tk.Button(self.frame, text="Contatar organizações internacionais", font=("Helvetica", 20), command=self.contact_organizations_with_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Usar drones para dispersão aérea", font=("Helvetica", 20), command=self.use_drones_with_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def contact_organizations(self):
+        self.clear_frame()
+        contact_label = tk.Label(self.frame, text="Você contactou organizações internacionais, mas o governo não confia em Brian.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        contact_label.pack(pady=20)
+        self.develop_cure_alone()
+
+    def contact_organizations_with_brian(self):
+        self.clear_frame()
+        contact_label = tk.Label(self.frame, text="Você contactou organizações internacionais e o governo decidiu ajudar.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        contact_label.pack(pady=20)
+        self.develop_cure_with_government()
+
+    def use_drones(self):
+        self.clear_frame()
+        messagebox.showwarning("Dispersão Aérea", "O governo controla os drones e descobriu sua localização.")
+        self.drone_consequence()
+
+    def use_drones_with_brian(self):
+        self.clear_frame()
+        messagebox.showwarning("Dispersão Aérea", "O governo controla os drones e descobriu sua localização.")
+        self.drone_consequence()
+
+    def drone_consequence(self):
+        self.clear_frame()
+        drone_label = tk.Label(self.frame, text="Você foi descoberto pelo governo. O que deseja fazer?", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        drone_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Voltar para Jandira", font=("Helvetica", 20), command=self.return_to_jandira, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Ficar em Itapevi", font=("Helvetica", 20), command=self.stay_in_itapevi, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def return_to_jandira(self):
+        self.clear_frame()
+        messagebox.showwarning("Capturado", "Você foi capturado pelo governo ao retornar para Jandira.")
+        self.end_game(False)
+
+    def stay_in_itapevi(self):
+        self.clear_frame()
+        itapevi_label = tk.Label(self.frame, text="Você decidiu ficar em Itapevi. O governo não conseguiu capturá-lo.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        itapevi_label.pack(pady=20)
+        self.continue_story_in_itapevi()
+
+    def continue_story_in_itapevi(self):
+        choice1_button = tk.Button(self.frame, text="Convencer Brian a ajudar", font=("Helvetica", 20), command=self.convince_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Sacrificar Brian", font=("Helvetica", 20), command=self.sacrifice_brian, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def develop_cure_alone(self):
+        self.clear_frame()
+        messagebox.showinfo("Desenvolvimento da Cura", "Você e Brian estão trabalhando sozinhos na cura.")
+        self.crucial_decision()
+
+    def develop_cure_with_government(self):
+        self.clear_frame()
+        messagebox.showinfo("Desenvolvimento da Cura", "Você está desenvolvendo a cura com a ajuda do governo.")
+        self.crucial_decision()
+
+    def crucial_decision(self):
+        self.clear_frame()
+        crucial_label = tk.Label(self.frame, text="O governo propôs um trato: se entregar e não desenvolver a cura, você será levado a um lugar seguro.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        crucial_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Aceitar o trato", font=("Helvetica", 20), command=self.accept_deal, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Recusar e continuar", font=("Helvetica", 20), command=self.refuse_deal, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def accept_deal(self):
+        self.clear_frame()
+        messagebox.showwarning("Traição", "Você foi traído e levado para um laboratório do governo.")
+        self.lab_scenario()
+
+    def refuse_deal(self):
+        self.clear_frame()
+        messagebox.showinfo("Cura Desenvolvida", "Você continuou trabalhando e desenvolveu a cura.")
+        self.end_game(True)
+
+    def lab_scenario(self):
+        self.clear_frame()
+        lab_label = tk.Label(self.frame, text="Você está preso em um laboratório do governo, sendo cobaia do Príon-X.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        lab_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Fingir estar dormindo", font=("Helvetica", 20), command=self.pretend_sleep, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Continuar lá e fracassar", font=("Helvetica", 20), command=self.fail_and_die, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def pretend_sleep(self):
+        self.clear_frame()
+        messagebox.showinfo("Fuga Bem-sucedida", "Você fingiu estar dormindo e conseguiu fugir junto com um funcionário.")
+        self.after_escape()
+
+    def fail_and_die(self):
+        self.clear_frame()
+        messagebox.showwarning("Fim do Jogo", "Você fracassou e se tornou uma vítima do Príon-X.")
+        self.end_game(False)
+
+    def after_escape(self):
+        self.clear_frame()
+        escape_label = tk.Label(self.frame, text="Você fugiu, mas agora está sem recursos. Viu um carregamento de animais infectados com destino a Jandira e decidiu se esconder.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        escape_label.pack(pady=20)
+        self.journey_to_jandira()
+
+    def journey_to_jandira(self):
+        self.clear_frame()
+        journey_label = tk.Label(self.frame, text="Você chegou em Jandira e encontrou seu laboratório em ruínas, mas com uma dose da cura ainda intacta.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        journey_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Clonar a cura", font=("Helvetica", 20), command=self.clone_cure, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Usar a cura em si mesmo", font=("Helvetica", 20), command=self.use_cure_on_self, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+        choice3_button = tk.Button(self.frame, text="Buscar ajuda de alguém", font=("Helvetica", 20), command=self.seek_help, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice3_button.pack(pady=10)
+
+    def clone_cure(self):
+        self.clear_frame()
+        messagebox.showinfo("Cura Clonada", "Você clonou a cura com sucesso e desenvolveu uma nova versão mais potente.")
+        self.end_game(True)
+
+    def use_cure_on_self(self):
+        self.clear_frame()
+        messagebox.showwarning("Cura Ineficaz", "Você usou a cura em si mesmo, mas foi contaminado pelo Príon-X, porém morre de forma lenta e dolorosa.")
+        self.end_game(False)
+
+    def seek_help(self):
+        self.clear_frame()
+        seek_help_label = tk.Label(self.frame, text="Você decidiu buscar ajuda de alguém.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+        seek_help_label.pack(pady=20)
+        choice1_button = tk.Button(self.frame, text="Sacrificou Brian anteriormente", font=("Helvetica", 20), command=self.no_help, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice1_button.pack(pady=10)
+        choice2_button = tk.Button(self.frame, text="Não sacrificou Brian", font=("Helvetica", 20), command=self.get_help, bg='#0057b8', fg='#ffffff', width=30, height=2)
+        choice2_button.pack(pady=10)
+
+    def no_help(self):
+        self.clear_frame()
+        messagebox.showwarning("Sem Ajuda", "Ninguém confia em você devido ao sacrifício de Brian. Você clonou a cura sozinho.")
+        self.clone_cure()
+
+    def get_help(self):
+        self.clear_frame()
+        messagebox.showinfo("Ajuda Recebida", "A comunidade da favela ajudou na distribuição da cura, afastando as autoridades.")
+        self.clone_cure()
+
+    def end_game(self, success):
+        self.clear_frame()
+        if success:
+            end_label = tk.Label(self.frame, text="Parabéns! Você desenvolveu a cura e salvou a humanidade. Dr. Vitinho foi reconhecido pelos órgãos mundiais e recebeu um Prêmio Nobel.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+            end_label.pack(pady=20)
+        else:
+            end_label = tk.Label(self.frame, text="Fim do Jogo. Infelizmente, você não conseguiu desenvolver a cura a tempo.", font=("Helvetica", 24, "bold"), bg='#f5f5f5')
+            end_label.pack(pady=20)
+        restart_button = tk.Button(self.frame, text="Reiniciar Jogo", font=("Helvetica", 20), command=self.create_intro, bg='#0057b8', fg='#ffffff', width=20, height=2)
+        restart_button.pack(pady=20)
+
+    def clear_frame(self):
+        for widget in self.frame.winfo_children():
+            widget.destroy()
+
+root = tk.Tk()
+game = Game(root)
+root.mainloop()
